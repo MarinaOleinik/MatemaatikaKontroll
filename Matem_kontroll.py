@@ -30,14 +30,32 @@ while True:
         break
     else:
         kokku+=1
-        a=randint(min,max)
-        b=randint(min,max)
-        tehe=choice(tehed)#
+        a=randint(min,max)# !=0 kui //
+        b=randint(min,max)# !=0
+        tehe=choice(tehed)# 
+        if tehe=="//":
+            while b==0:
+                try:
+                    b=randint(min,max)
+                except:
+                    ValueError
         print(f"{a}{tehe}{b}", end=" ")
         vaja=eval(str(a)+tehe+str(b)) #round()?
-        vastus=int(input("="))               
+        vastus=""
+        while type(vastus)!=int:
+            try:
+                vastus=int(input("="))   # !=str  
+            except ValueError:
+                print("Vaja int !!!")
         if vastus==int(vaja):
              print("Õige vastus!")
              p+=1
         else:
              print("Mõtle veel!")
+print("Kokku ülesandeid oli: ",kokku)
+print("Õigev vastused: ",p)
+K=(p/kokku)*100
+if K<60:
+    print("Hinne 2")
+elif 60<=K<75:
+    print("Hinne 3")
